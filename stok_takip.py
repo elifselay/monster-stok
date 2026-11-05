@@ -10,6 +10,9 @@ import requests
 # Takip etmek istediğin ürünleri buraya ekle (isim: link)
 URUNLER = {
     "Draculaura JMG89 (Armağan)": "https://www.armaganoyuncak.com.tr/monster-high-dawn-of-the-dance-draculaura-bebek-jmg89-p-010101matjmg89",
+    "Cleo JKM47 (Armağan)": "https://www.armaganoyuncak.com.tr/monster-high-dawn-of-the-dance-cleo-bebek-jkm47-p-010101matjkm47",
+    "Lagoona Blue JKM48 (Armağan)": "https://www.armaganoyuncak.com.tr/monster-high-dawn-of-the-dance-lagoona-blue-bebek-jkm48-p-010101matjkm48",
+    "Frankie Stein JKM46 (Armağan)": "https://www.armaganoyuncak.com.tr/monster-high-dawn-of-the-dance-frankie-bebek-jkm46-p-010101matjkm46",
     "Lagoona Blue JKM48 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-lagoona-blue-bebek-jkm48?serial=108958",
     "Cleo JKM47 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-cleo-bebek-jkm47?serial=108957",
     "Frankie Stein JKM46 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-frankie-stein-bebek-jkm46?serial=108956",
