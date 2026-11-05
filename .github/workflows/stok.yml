@@ -1,0 +1,30 @@
+name: Monster High Stok Takip
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"    # her 5 dakikada bir
+  workflow_dispatch:          # elle de çalıştırabilirsin
+
+permissions:
+  contents: write
+
+jobs:
+  kontrol:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python stok_takip.py
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Durumu kaydet
+        run: |
+          git config user.name "stok-bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add durum.json
+          git diff --staged --quiet || git commit -m "durum güncellendi"
+          git push
