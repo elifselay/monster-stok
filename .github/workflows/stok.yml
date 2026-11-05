@@ -3,7 +3,12 @@ name: Monster High Stok Takip
 on:
   schedule:
     - cron: "*/5 * * * *"    # her 5 dakikada bir
-  workflow_dispatch:          # elle de çalıştırabilirsin
+  workflow_dispatch:
+    inputs:
+      test:
+        description: "Telegram'a test mesaji gonder"
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -13,6 +18,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Telegram test mesaji
+        if: ${{ inputs.test }}
+        run: |
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            -d chat_id="${TELEGRAM_CHAT_ID}" \
+            -d text="✅ Test: Monster High stok botu calisiyor! 💜"
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
