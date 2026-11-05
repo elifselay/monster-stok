@@ -10,7 +10,9 @@ import requests
 # Takip etmek istediğin ürünleri buraya ekle (isim: link)
 URUNLER = {
     "Draculaura JMG89 (Armağan)": "https://www.armaganoyuncak.com.tr/monster-high-dawn-of-the-dance-draculaura-bebek-jmg89-p-010101matjmg89",
-    # "Başka bebek": "https://...",
+    "Lagoona Blue JKM48 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-lagoona-blue-bebek-jkm48?serial=108958",
+    "Cleo JKM47 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-cleo-bebek-jkm47?serial=108957",
+    "Frankie Stein JKM46 (Toyzz)": "https://www.toyzzshop.com/monster-high-dawn-of-the-dance-frankie-stein-bebek-jkm46?serial=108956",
 }
 
 TELEGRAM_TOKEN = os.environ["TELEGRAM_TOKEN"]
@@ -31,8 +33,9 @@ def stokta_mi(html: str) -> bool:
         return m.group(1) == "InStock"
     # 2) Yedek: buton yazılarına bak
     kucuk = html.lower()
-    if "stokta olduğunda bana bildir" in kucuk or "tükendi" in kucuk:
-        return False
+    for ifade in ["stokta olduğunda bana bildir", "gelince haber ver", "stokta yok", "tükendi"]:
+        if ifade in kucuk:
+            return False
     return "sepete ekle" in kucuk
 
 
